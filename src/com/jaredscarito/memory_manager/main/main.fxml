@@ -1,0 +1,49 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.TextField?>
+<GridPane fx:controller="com.jaredscarito.memory_manager.main.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <VBox id="data">
+        <children>
+            <VBox styleClass="data-col"> <!-- Col 1 -->
+                <children>
+                    <Label styleClass="header" text="DATA" />
+                    <Label styleClass="col-label" text="Select Algorithm:" />
+                    <ChoiceBox id="algoSelect">
+                        <String fx:value="First Fit" />
+                        <String fx:value="Best Fit" />
+                        <String fx:value="Worst Fit" />
+                    </ChoiceBox>
+
+                    <Label styleClass="col-label" text="Total Memory:" />
+                    <TextField text="4096" styleClass="memory-fields" /> <Label styleClass="memory-k" text="K" />
+
+                    <Label styleClass="col-label" text="OS Memory: " />
+                    <TextField text="400" styleClass="os-memory" /> <Label styleClass="memory-k" text="K" />
+                </children>
+            </VBox> <!-- End Col 1 -->
+            <VBox styleClass="data-col"> <!-- Col 2 -->
+                <children>
+
+                </children>
+            </VBox> <!-- End Col 2 -->
+            <VBox styleClass="data-col"> <!-- Col 3 -->
+                <children>
+
+                </children>
+            </VBox> <!-- End Col 3 -->
+            <VBox styleClass="data-col"> <!-- Col 4 (Memory Box) -->
+                <children>
+
+                </children>
+            </VBox> <!-- End Col 4 -->
+        </children>
+    </VBox>
+</GridPane>

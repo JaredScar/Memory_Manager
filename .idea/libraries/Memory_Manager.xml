@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Memory_Manager">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Memory_Manager/Memory_Manager.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
