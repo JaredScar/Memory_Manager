@@ -1,8 +1,51 @@
 .data {}
-.data-col {}
-.header {}
-.col-label {}
-.algoSelect {}
-.memory-fields {}
-.memory-k {}
-.os-memory {}
+.data-col {
+    -fx-padding: 0 0 20px 20px;
+    -fx-pref-width: 400px;
+    -fx-background-color: #F1F1F1;
+}
+.header {
+    -fx-font-size: 24px;
+    -fx-padding: 20px 0px 20px 20px; /* top, right, bottom, left */
+}
+.col-label {
+    -fx-padding: 0 20px 0 20px;
+    -fx-pref-width: 180px;
+    -fx-font-size: 14px;
+}
+#algoSelect {
+    -fx-pref-width: 150px;
+}
+#algoSelect .context-menu {
+    -fx-pref-width: 150px;
+}
+.memory-fields {
+    -fx-pref-width: 150px;
+}
+.memory-k {
+    -fx-font-size: 17px;
+    -fx-padding: 0 0 0 5px;
+}
+.box {
+    -fx-padding: 20px 0 0 0;
+}
+
+/* Col 2 */
+#processID {
+    -fx-pref-width: 150px;
+}
+#processID .context-menu {
+    -fx-pref-width: 150px;
+}
+.process-fields {
+    -fx-pref-width: 150px;
+}
+.process-k {
+    -fx-font-size: 17px;
+    -fx-padding: 0 0 0 5px;
+}
+
+/* Col 3 */
+.mem-btn {
+    -fx-pref-width: 360px;
+}

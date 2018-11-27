@@ -6,6 +6,7 @@ public class Process {
     private int burstsDone = 0; // How many bursts are done
     private int burstsRemain = 0; // How many bursts remain
     private int burstsCount = 0; // Total bursts
+    private int memorySize = 0; // Memory Size of process
     private boolean completed = false; // Is the Job completed?
     private boolean active = false; // Is the Job active in a CPU?
 
