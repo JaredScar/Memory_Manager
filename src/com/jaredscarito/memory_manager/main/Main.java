@@ -1,5 +1,8 @@
 package com.jaredscarito.memory_manager.main;
 
+import com.jaredscarito.memory_manager.api.buttons.AddButton;
+import com.jaredscarito.memory_manager.api.buttons.CompactButton;
+import com.jaredscarito.memory_manager.api.buttons.RemoveButton;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -142,7 +145,9 @@ public class Main extends Application {
         compactBtn.getStyleClass().add("mem-btn");
 
         // Adding functionality to buttons
-        //TODO
+        addBtn.setOnMouseClicked(new AddButton());
+        minusBtn.setOnMouseClicked(new RemoveButton());
+        compactBtn.setOnMouseClicked(new CompactButton());
 
         addButtonHbox.getChildren().add(addBtn);
         removeButtonHbox.getChildren().add(minusBtn);
