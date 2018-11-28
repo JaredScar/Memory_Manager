@@ -20,6 +20,10 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class Main extends Application {
+    private TextField totalMem;
+    private TextField osMem;
+    private ChoiceBox pidBox;
+    private TextField processSize;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -137,9 +141,9 @@ public class Main extends Application {
         HBox compactButtonHbox = new HBox();
         compactButtonHbox.getStyleClass().add("box");
 
-        Button addBtn = new Button("+ Memory Block");
+        Button addBtn = new Button("Add Memory Block");
         addBtn.getStyleClass().add("mem-btn");
-        Button minusBtn = new Button("- Memory Block");
+        Button minusBtn = new Button("Remove Memory Block");
         minusBtn.getStyleClass().add("mem-btn");
         Button compactBtn = new Button("COMPACT");
         compactBtn.getStyleClass().add("mem-btn");
@@ -159,8 +163,12 @@ public class Main extends Application {
 
         grid.add(buttonBox, 0, 2);
         /*
-         * End Col 2
+         * End Col 3
          */
+        this.totalMem = totalMemoryField;
+        this.osMem = osMemoryField;
+        this.pidBox = idChoiceBox;
+        this.processSize = processSizeField;
         /*
          * Memory Managed Column
          */
