@@ -226,9 +226,15 @@ public class Main extends Application {
         VBox memoryContainer = new VBox();
         memoryContainer.setPrefSize(100, 600);
         memoryContainer.getStyleClass().add("memory-container");
+        //TODO TESTS - GET RID OF
         ProcessBlock p1 = new ProcessBlock("P1", 4096, 0);
         memoryContainer.getChildren().add(p1);
         p1.change("P2", 100, 200);
+        ProcessBlock p2 = new ProcessBlock("P3", 3000, 150);
+        //TODO END TESTS
+        memoryContainer.getChildren().add(p2);
+
+        memoryContainerPub = memoryContainer;
 
         horizContainer.getChildren().addAll(memorySizeVbox, memoryBox);
 
@@ -239,6 +245,8 @@ public class Main extends Application {
          */
         return grid;
     }
+
+    public static VBox memoryContainerPub;
 
     public static VBox memorySizeBox;
 
