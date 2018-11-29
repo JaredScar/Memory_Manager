@@ -227,12 +227,12 @@ public class Main extends Application {
         memoryContainer.setPrefSize(100, 600);
         memoryContainer.getStyleClass().add("memory-container");
         //TODO TESTS - GET RID OF
-        ProcessBlock p1 = new ProcessBlock("P1", 4096, 0);
+        ProcessBlock p1 = new ProcessBlock("P1", 500, 0);
         memoryContainer.getChildren().add(p1);
-        p1.change("P2", 100, 200);
-        ProcessBlock p2 = new ProcessBlock("P3", 3000, 150);
+        //p1.change("P2", 100, 200);
+        ProcessBlock p3 = new ProcessBlock("P3", 1000, 100);
         //TODO END TESTS
-        memoryContainer.getChildren().add(p2);
+        memoryContainer.getChildren().add(p3);
 
         memoryContainerPub = memoryContainer;
 
