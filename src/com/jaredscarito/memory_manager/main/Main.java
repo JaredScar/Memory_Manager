@@ -3,6 +3,7 @@ package com.jaredscarito.memory_manager.main;
 import com.jaredscarito.memory_manager.api.buttons.AddButton;
 import com.jaredscarito.memory_manager.api.buttons.CompactButton;
 import com.jaredscarito.memory_manager.api.buttons.RemoveButton;
+import com.jaredscarito.memory_manager.api.spaces.ProcessBlock;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,18 +13,36 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    private TextField totalMem;
-    private TextField osMem;
-    private ChoiceBox pidBox;
-    private TextField processSize;
+    private static TextField totalMem;
+    private static TextField osMem;
+    private static ChoiceBox pidBox;
+    private static TextField processSize;
+
+    public static TextField getTotalMemField() {
+        return totalMem;
+    }
+
+    public static TextField getOsMemField() {
+        return osMem;
+    }
+
+    public static ChoiceBox getPidBox() {
+        return pidBox;
+    }
+
+    public static TextField getProcessSizeField() {
+        return processSize;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -43,7 +62,7 @@ public class Main extends Application {
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10.0);
         grid.setVgap(10.0);
-        grid.setMinSize(800, 800);
+        grid.setMinSize(800, 550);
         /*
          * Col 1
          */
@@ -172,12 +191,56 @@ public class Main extends Application {
         /*
          * Memory Managed Column
          */
-        // TODO
+        VBox memoryFieldsBox = new VBox();
+        memoryFieldsBox.getStyleClass().add("memory-field-col");
+        Label fieldM = new Label("M");
+        fieldM.getStyleClass().add("memory-letters");
+        Label fieldE = new Label("E");
+        fieldE.getStyleClass().add("memory-letters");
+        Label fieldM2 = new Label("M");
+        fieldM2.getStyleClass().add("memory-letters");
+        Label fieldO = new Label("O");
+        fieldO.getStyleClass().add("memory-letters");
+        Label fieldR = new Label("R");
+        fieldR.getStyleClass().add("memory-letters");
+        Label fieldY = new Label("Y");
+        fieldY.getStyleClass().add("memory-letters");
+
+        memoryFieldsBox.getChildren().addAll(fieldM, fieldE, fieldM2, fieldO, fieldR, fieldY);
+
+        memoryFieldsBox.setPrefWidth(100);
+
+        grid.add(memoryFieldsBox, 1, 0, 1, 3);
+
+        // Memory Size Box
+        HBox horizContainer = new HBox();
+        horizContainer.getStyleClass().add("horiz-container");
+        VBox memorySizeVbox = new VBox();
+        memorySizeVbox.getStyleClass().add("memory-size-box");
+        memorySizeBox = memorySizeVbox;
+
+        // Memory Box
+        VBox memoryBox = new VBox();
+        memoryBox.getStyleClass().add("memory-box");
+        // Memory Container
+        VBox memoryContainer = new VBox();
+        memoryContainer.setPrefSize(100, 600);
+        memoryContainer.getStyleClass().add("memory-container");
+        ProcessBlock p1 = new ProcessBlock("P1", 4096, 0);
+        memoryContainer.getChildren().add(p1);
+        p1.change("P2", 100, 200);
+
+        horizContainer.getChildren().addAll(memorySizeVbox, memoryBox);
+
+        grid.add(horizContainer, 3, 0, 1, 3);
+        grid.add(memoryContainer, 4, 0, 1, 3);
         /*
          * End Memory Column
          */
         return grid;
     }
+
+    public static VBox memorySizeBox;
 
     public static void main(String[] args) {
         launch(args);

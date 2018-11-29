@@ -7,6 +7,7 @@
 .header {
     -fx-font-size: 24px;
     -fx-padding: 20px 0px 20px 20px; /* top, right, bottom, left */
+    -fx-font-weight: bolder;
 }
 .col-label {
     -fx-padding: 0 20px 0 20px;
@@ -48,4 +49,30 @@
 /* Col 3 */
 .mem-btn {
     -fx-pref-width: 360px;
+}
+.memory-field-col {
+    -fx-pref-width: 50px;
+    -fx-font-size: 20px;
+    -fx-background-color: #F1F1F1;
+    -fx-padding: 200px 0 0 15px;
+    -fx-font-weight: bold;
+}
+
+.memory-box {}
+.memory-container {
+    -fx-background-color: #ffc300;
+}
+.process-block {
+    -fx-background-color: magenta;
+    -fx-border-color: black;
+    -fx-border-width: 3px;
+    -fx-border-style: hidden hidden solid hidden;
+}
+.process-size-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+.process-block-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
 }
