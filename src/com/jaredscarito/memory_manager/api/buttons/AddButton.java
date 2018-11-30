@@ -30,9 +30,6 @@ public class AddButton implements EventHandler<MouseEvent> {
                     }
                 }
             });
-            for (int p = 0; p < pDimensions.length; p++) {
-                System.out.println("Hole " + p + ": " + "StartY:" + pDimensions[p][0] + " | Size:" + pDimensions[p][1]);
-            }
             //get process size
             int pSize = API.getInstance().getInputMemSize();
             //add block

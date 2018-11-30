@@ -171,7 +171,6 @@ public class API {
             if(isEmpty) {
                 if(endY1 > 0) {
                     emptySpaces.put(endY1, 0);
-                    System.out.println("endY1: " + endY1); // TODO debug - get rid of
                 }
             }
         }
