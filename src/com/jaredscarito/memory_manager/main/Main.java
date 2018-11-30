@@ -22,12 +22,18 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main extends Application {
     private static TextField totalMem;
     private static TextField osMem;
     private static ChoiceBox pidBox;
     private static TextField processSize;
+    private static ChoiceBox algoBox;
+
+    public static ChoiceBox getAlgoBox() {
+        return algoBox;
+    }
 
     public static TextField getTotalMemField() {
         return totalMem;
@@ -77,11 +83,13 @@ public class Main extends Application {
         selectBox.getStyleClass().add("box"); // css
         Label algoLabel = new Label("Select Algorithm:");
         algoLabel.getStyleClass().add("col-label");
-        ChoiceBox algoBox = new ChoiceBox();
-        algoBox.setItems(FXCollections.observableArrayList("First Fit", new Separator(), "Best Fit",
+        ChoiceBox algo = new ChoiceBox();
+        algoBox = algo;
+        algo.setItems(FXCollections.observableArrayList("First Fit", new Separator(), "Best Fit",
                 new Separator(), "Worst Fit"));
-        algoBox.getSelectionModel().selectFirst();
-        algoBox.setId("algoSelect"); // css
+        algo.getSelectionModel().selectFirst();
+        algo.setId("algoSelect"); // css
+
         selectBox.getChildren().addAll(algoLabel, algoBox); // selectBox
         dataBox.getChildren().add(selectBox); // dataBox
 
@@ -222,10 +230,25 @@ public class Main extends Application {
         blockLayoutPane = blockLayout;
         /* TODO tests - get rid of */
         /** /
-        System.out.println(API.getInstance().getSelectedPid());
         API.getInstance().addBlock("P1", 1000, API.getInstance().getEmptySpace()[0]);
+        int[][] emptySpaces = API.getInstance().getEmptySpaces();
+        for(int i=0; i<emptySpaces.length; i++) {
+            System.out.println("After P1: startY = " + emptySpaces[i][0]);
+            System.out.println("After P1: size = " + emptySpaces[i][1]);
+        }
         API.getInstance().addBlock("P2", 275, API.getInstance().getEmptySpace()[0]);
+        int[][] emptySpaces2 = API.getInstance().getEmptySpaces();
+        for(int i=0; i<emptySpaces2.length; i++) {
+            System.out.println("After P2: startY = " + emptySpaces2[i][0]);
+            System.out.println("After P2: size = " + emptySpaces2[i][1]);
+        }
         API.getInstance().addBlock("P3", 800, API.getInstance().getEmptySpace()[0]);
+        int[][] emptySpaces3 = API.getInstance().getEmptySpaces();
+        for(int i=0; i<emptySpaces3.length; i++) {
+            System.out.println("After P3: startY = " + emptySpaces3[i][0]);
+            System.out.println("After P3: size = " + emptySpaces3[i][1]);
+        }
+        System.out.println();
         API.getInstance().addBlock("P4", 500, API.getInstance().getEmptySpace()[0]);
         /**/
         /* TODO end tests */

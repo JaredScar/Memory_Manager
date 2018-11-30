@@ -31,6 +31,9 @@ public class API {
     public int getInputMemSize() {
         return Integer.parseInt(Main.getProcessSizeField().getText());
     }
+    public String getSelectedAlgorithm() {
+        return (String) Main.getAlgoBox().getSelectionModel().getSelectedItem();
+    }
 
     /**
      *
@@ -100,7 +103,6 @@ public class API {
      */
     public int[] getEmptySpace() {
         int emptyStartY = -1;
-        System.out.println(processBlocks.size());
         if(processBlocks.size() == 0) return new int[] {0, getTotalMemSize()};
 
         for(ProcessBlock block1 : processBlocks) {
@@ -119,7 +121,6 @@ public class API {
         }
         if(emptyStartY == -1) return null;
         // We need to find size of it now
-        int size;
         int emptyEndY = 600;
         int startYCout = emptyStartY;
         if(startYCout > -1) {
@@ -133,7 +134,7 @@ public class API {
                 }
             }
         }
-        size = ( (emptyEndY - emptyStartY) / 600 ) * Integer.parseInt(Main.getTotalMemField().getText());
+        int size = (int) (( ((double) emptyEndY - (double) emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
         return new int[] {emptyStartY, size};
     }
 
@@ -170,9 +171,13 @@ public class API {
                 for(ProcessBlock block : processBlocks) {
                     if(block.getStartY() == yCout) {
                         // Hole ends here
-                        int size = ( ((yCout - emptyStartY) / 600) * Integer.parseInt(Main.getTotalMemField().getText()));
+                        int size = (int) (( ((double) yCout - (double) emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
                         emptySpaces.put(emptyStartY, size);
                     }
+                }
+                if(yCout == 600) {
+                    int size = (int) (( ((double) yCout - (double) emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
+                    emptySpaces.put(emptyStartY, size);
                 }
             }
         }
