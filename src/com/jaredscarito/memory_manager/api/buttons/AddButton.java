@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 public class AddButton implements EventHandler<MouseEvent> {
 
     @Override
-    public void handle(MouseEvent event) {
+   public void handle(MouseEvent event) {
 
         String Pid;
         // get process id number
@@ -18,27 +18,28 @@ public class AddButton implements EventHandler<MouseEvent> {
         int pSize = API.getInstance().getInputMemSize();
         //add block
         boolean added = false;
-        int i = 0;
-        while(added == false && i < pDimensions.length)
-        {
-            //attempt to add
-
-            if(pDimensions[i][1] >= pSize)
+        //find first hole
+        int startY = pDimensions[0][0];
+        int size = pDimensions[0][1];
+        for(int p = 0;p<pDimensions.length;p++)
+        {//find the first hole in memory
+            if(pDimensions[p][0]< startY && pDimensions[p][1]>pSize)
             {
-                API.getInstance().addBlock(Pid, pSize, pDimensions[i][0]);
-                added = true;
+                startY = pDimensions[p][0];
+                size = pDimensions[p][1];
+
             }
-            i++;
+        }
+        if(size > pSize)//check hole is big enough for process
+        {
+            API.getInstance().addBlock(Pid, pSize, startY);
+            added = true;//add process
         }
         if(added == false)//failure to add block
         {
             System.out.println("Process not added. No block large enough");
         }
-        for(int p = 0;p<pDimensions.length;p++)
-        {
-            System.out.println(pDimensions[p][0]);
-            System.out.println(pDimensions[p][1]);
-        }
+       
 
 
 
@@ -59,23 +60,27 @@ public class AddButton implements EventHandler<MouseEvent> {
         int pSize = API.getInstance().getInputMemSize();
         //add block
         boolean added = false;
-        int i = 0;
-        while(added == false && i < pDimensions.length)
-        {
-            //attempt to add
-
-            if(pDimensions[i][1] >= pSize)
+        //find first hole
+        int startY = pDimensions[0][0];
+        int size = pDimensions[0][1];
+        for(int p = 0;p<pDimensions.length;p++)
+        {//find the first hole in memory
+            if(pDimensions[p][0]< startY && pDimensions[p][1]>pSize)
             {
-                API.getInstance().addBlock(Pid, pSize, pDimensions[i][0]);
-                added = true;
+                startY = pDimensions[p][0];
+                size = pDimensions[p][1];
+
             }
-            i++;
+        }
+        if(size > pSize)//check hole is big enough for process
+        {
+            API.getInstance().addBlock(Pid, pSize, startY);
+            added = true;//add process
         }
         if(added == false)//failure to add block
         {
             System.out.println("Process not added. No block large enough");
         }
-
 
 
 
