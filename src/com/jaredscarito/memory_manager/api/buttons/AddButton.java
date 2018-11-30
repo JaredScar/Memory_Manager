@@ -3,7 +3,7 @@ package com.jaredscarito.memory_manager.api.buttons;
 import com.jaredscarito.memory_manager.api.API;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-
+import javax.swing.*;
 import java.util.Arrays;
 
 public class AddButton implements EventHandler<MouseEvent> {
@@ -26,21 +26,21 @@ public class AddButton implements EventHandler<MouseEvent> {
         int size = pDimensions[0][1];
         for(int p = 0;p<pDimensions.length;p++)
         {//find the first hole in memory
-            if(pDimensions[p][0]< startY && pDimensions[p][1]>pSize)
+            if(pDimensions[p][0]< startY && pDimensions[p][1]>=pSize)
             {
                 startY = pDimensions[p][0];
                 size = pDimensions[p][1];
 
             }
         }
-        if(size > pSize)//check hole is big enough for process
+        if(size >= pSize)//check hole is big enough for process
         {
             API.getInstance().addBlock(Pid, pSize, startY);
             added = true;//add process
         }
         if(added == false)//failure to add block
         {
-            System.out.println("Process not added. No block large enough");
+            JOptionPane.showMessageDialog(null, "Process not added. Memory block not large enough");
         }
        
 
