@@ -52,6 +52,15 @@ public class API {
         return false;
     }
 
+    public boolean hasProcessById(String pid) {
+        for(ProcessBlock block : processBlocks) {
+            if(block.getPID().equalsIgnoreCase(pid)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      *
      * @param block
