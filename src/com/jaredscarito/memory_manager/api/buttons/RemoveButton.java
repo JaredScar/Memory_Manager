@@ -13,7 +13,7 @@ public class RemoveButton implements EventHandler<MouseEvent> {
 
         if(API.getInstance().removeBlock(Pid) == false)
         {
-            JOptionPane.showMessageDialog(null, "Process does not exist memory");
+            JOptionPane.showMessageDialog(null, "ERROR: Process does not exist memory");
         }
 
 
