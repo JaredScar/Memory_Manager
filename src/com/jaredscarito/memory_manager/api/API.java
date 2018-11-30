@@ -25,6 +25,12 @@ public class API {
     public int getOSFieldSize() {
         return Integer.parseInt(Main.getOsMemField().getText());
     }
+    public String getSelectedPid() {
+        return (String) Main.getPidBox().getSelectionModel().getSelectedItem();
+    }
+    public int getInputMemSize() {
+        return Integer.parseInt(Main.getProcessSizeField().getText());
+    }
 
     /**
      *

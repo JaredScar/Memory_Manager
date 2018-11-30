@@ -222,6 +222,7 @@ public class Main extends Application {
         blockLayoutPane = blockLayout;
         /* TODO tests - get rid of */
         /** /
+        System.out.println(API.getInstance().getSelectedPid());
         API.getInstance().addBlock("P1", 1000, API.getInstance().getEmptySpace()[0]);
         API.getInstance().addBlock("P2", 275, API.getInstance().getEmptySpace()[0]);
         API.getInstance().addBlock("P3", 800, API.getInstance().getEmptySpace()[0]);
