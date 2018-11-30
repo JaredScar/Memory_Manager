@@ -222,7 +222,7 @@ public class Main extends Application {
         /* TODO tests - get rid of */
         ProcessBlock p1 = new ProcessBlock("P1", 1000, 0);
         ProcessBlock p2 = new ProcessBlock("P2", 275, p1.getEndY());
-        ProcessBlock p3 = new ProcessBlock("P3", 800, p2.getEndY());
+        ProcessBlock p3 = new ProcessBlock("P3", 800, p2.getEndY() + 50);
         ProcessBlock p4 = new ProcessBlock("P4", 500, p3.getEndY());
         /* TODO end tests */
         grid.add(sizeLayout, 2, 0, 1, 3);

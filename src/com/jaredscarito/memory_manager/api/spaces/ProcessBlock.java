@@ -1,7 +1,6 @@
 package com.jaredscarito.memory_manager.api.spaces;
 
 import com.jaredscarito.memory_manager.main.Main;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -10,23 +9,24 @@ import javax.swing.*;
 
 public class ProcessBlock extends HBox {
 
-    private double size;
+    private int size;
+    private int startY;
+    private int endY;
 
     private String pid;
 
     private int displaySize;
-    private double startY;
-    private double endY;
 
     private Label sizeLabel;
     private Label processLabel;
 
-    public ProcessBlock(String pid, int size, double startY) {
-        this.pid = pid;
-        this.displaySize = size;
-        this.startY = startY;
-        this.size = ( (600 / Double.parseDouble(Main.getTotalMemField().getText())) * size );
-        if(this.size >= 40) {
+    public ProcessBlock(String pid, int size, int startY) {
+        double sizeCalc = ( (600 / Double.parseDouble(Main.getTotalMemField().getText())) * size );
+        if(sizeCalc >= 40) {
+            this.size = (int) sizeCalc;
+            this.pid = pid;
+            this.displaySize = size;
+            this.startY = startY;
             this.endY = this.size + this.startY; // Extra digit is for border px
             setLayoutY(this.startY);
             //this.setPrefHeight(this.size);
@@ -71,10 +71,13 @@ public class ProcessBlock extends HBox {
     public int getDisplaySize() {
         return displaySize;
     }
-    public double getStartY() {
+    public int getSize() {
+        return this.size;
+    }
+    public int getStartY() {
         return startY;
     }
-    public double getEndY() {
+    public int getEndY() {
         return endY;
     }
 }
