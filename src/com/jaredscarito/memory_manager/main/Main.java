@@ -221,10 +221,12 @@ public class Main extends Application {
         sizeLayoutPane = sizeLayout;
         blockLayoutPane = blockLayout;
         /* TODO tests - get rid of */
+        /** /
         API.getInstance().addBlock("P1", 1000, API.getInstance().getEmptySpace()[0]);
         API.getInstance().addBlock("P2", 275, API.getInstance().getEmptySpace()[0]);
         API.getInstance().addBlock("P3", 800, API.getInstance().getEmptySpace()[0]);
         API.getInstance().addBlock("P4", 500, API.getInstance().getEmptySpace()[0]);
+        /**/
         /* TODO end tests */
         grid.add(sizeLayout, 2, 0, 1, 3);
         grid.add(blockLayout, 3, 0, 1, 3);
