@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javax.swing.*;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class AddButton implements EventHandler<MouseEvent> {
 
@@ -16,28 +17,36 @@ public class AddButton implements EventHandler<MouseEvent> {
         Pid = API.getInstance().getSelectedPid();
         //get empty spaces and sizes
         int pDimensions[][] = API.getInstance().getEmptySpaces();
-        Arrays.toString(pDimensions);
+        Arrays.sort(pDimensions, new Comparator<int[]>() {
+            public int compare(int[] s1, int[] s2) {
+                if (s1[0] < s2[0])
+                    return 1;
+                else if (s1[0] > s2[0])
+                    return -1;
+                else {
+
+                    return 0;
+                }
+            }
+        });
+        for(int p = 0; p<pDimensions.length; p++)
+        {
+            System.out.println("StartY =" + pDimensions[p][0]);
+        }
         //get process size
         int pSize = API.getInstance().getInputMemSize();
         //add block
         boolean added = false;
+        int i = 0;
         //find first hole
-        int startY = pDimensions[0][0];
-        int size = pDimensions[0][1];
-        for(int p = 0;p<pDimensions.length;p++)
-        {//find the first hole in memory
-            if(pDimensions[p][0]< startY && pDimensions[p][1]>=pSize)
-            {
-                startY = pDimensions[p][0];
-                size = pDimensions[p][1];
-
-            }
-        }
-        if(size >= pSize)//check hole is big enough for process
-        {
-            API.getInstance().addBlock(Pid, pSize, startY);
-            added = true;//add process
-        }
+       while(added == false && i<pDimensions.length) {
+           if (pDimensions[i][1] >= pSize)//check hole is big enough for process
+           {
+               API.getInstance().addBlock(Pid, pSize, pDimensions[i][0]);
+               added = true;//add process
+           }
+           i++;
+       }
         if(added == false)//failure to add block
         {
             JOptionPane.showMessageDialog(null, "Process not added. Memory block not large enough");
