@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class API {
-    private static API api;
+    private static API api = new API();
     public static API getInstance() {
         return api;
     }
@@ -34,24 +34,56 @@ public class API {
      * Adds a ProcessBlock instance to the processBlocks ArrayList with the specified params
      * pid, size, and startY
      */
-    public void addBlock(String pid, int size, int startY) {
-        processBlocks.add(new ProcessBlock(pid, size, startY));
+    public boolean addBlock(String pid, int size, int startY) {
+        ProcessBlock p = new ProcessBlock(pid, size, startY);
+        if(p.getSize() != 0) {
+            processBlocks.add(p);
+            return true;
+        }
+        return false;
     }
 
     /**
      *
      * @param block
+     * @return isDeleted
      * Removes a ProcessBlock from the processBlocks ArrayList
      */
-    public void removeBlock(ProcessBlock block) {
+    public boolean removeBlock(ProcessBlock block) {
+        boolean isDeleted = false;
         block.destroy();
         int index = 0;
         for(ProcessBlock arrBlock : processBlocks) {
             if(arrBlock.getPID().equals(block.getPID())) {
-                index++;
+                isDeleted = true;
+                break;
+            }
+            index++;
+        }
+        if(isDeleted) {
+            processBlocks.remove(index);
+        }
+        return isDeleted;
+    }
+
+    /**
+     *
+     * @param pid
+     * @return boolean
+     */
+    public boolean removeBlock(String pid) {
+        ProcessBlock blockToDel = null;
+        for(ProcessBlock block : processBlocks) {
+            if(block.getPID().equals(pid)) {
+                block.destroy();
+                blockToDel = block;
             }
         }
-        processBlocks.remove(index);
+        if(blockToDel != null) {
+            processBlocks.remove(blockToDel);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -62,7 +94,8 @@ public class API {
      */
     public int[] getEmptySpace() {
         int emptyStartY = -1;
-        if(processBlocks.size() < 1) return new int[] {0, 600};
+        System.out.println(processBlocks.size());
+        if(processBlocks.size() == 0) return new int[] {0, getTotalMemSize()};
 
         for(ProcessBlock block1 : processBlocks) {
             boolean isEmpty = true;
@@ -106,7 +139,7 @@ public class API {
      */
     public int[][] getEmptySpaces() {
         HashMap<Integer, Integer> emptySpaces = new HashMap<>(); // startY, size
-        if(processBlocks.size() < 1) return new int[][] {{0, 600}};
+        if(processBlocks.size() < 1) return new int[][] {{0, getTotalMemSize()}};
 
         for(ProcessBlock block1 : processBlocks) {
             boolean isEmpty = true;

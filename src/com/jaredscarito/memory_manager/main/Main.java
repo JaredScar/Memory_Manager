@@ -1,5 +1,6 @@
 package com.jaredscarito.memory_manager.main;
 
+import com.jaredscarito.memory_manager.api.API;
 import com.jaredscarito.memory_manager.api.buttons.AddButton;
 import com.jaredscarito.memory_manager.api.buttons.CompactButton;
 import com.jaredscarito.memory_manager.api.buttons.RemoveButton;
@@ -184,10 +185,10 @@ public class Main extends Application {
         /*
          * End Col 3
          */
-        this.totalMem = totalMemoryField;
-        this.osMem = osMemoryField;
-        this.pidBox = idChoiceBox;
-        this.processSize = processSizeField;
+        totalMem = totalMemoryField;
+        osMem = osMemoryField;
+        pidBox = idChoiceBox;
+        processSize = processSizeField;
         /*
          * Memory Managed Column
          */
@@ -220,10 +221,10 @@ public class Main extends Application {
         sizeLayoutPane = sizeLayout;
         blockLayoutPane = blockLayout;
         /* TODO tests - get rid of */
-        ProcessBlock p1 = new ProcessBlock("P1", 1000, 0);
-        ProcessBlock p2 = new ProcessBlock("P2", 275, p1.getEndY());
-        ProcessBlock p3 = new ProcessBlock("P3", 800, p2.getEndY() + 50);
-        ProcessBlock p4 = new ProcessBlock("P4", 500, p3.getEndY());
+        API.getInstance().addBlock("P1", 1000, API.getInstance().getEmptySpace()[0]);
+        API.getInstance().addBlock("P2", 275, API.getInstance().getEmptySpace()[0]);
+        API.getInstance().addBlock("P3", 800, API.getInstance().getEmptySpace()[0]);
+        API.getInstance().addBlock("P4", 500, API.getInstance().getEmptySpace()[0]);
         /* TODO end tests */
         grid.add(sizeLayout, 2, 0, 1, 3);
         grid.add(blockLayout, 3, 0, 1, 3);
