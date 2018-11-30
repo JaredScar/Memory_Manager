@@ -62,7 +62,7 @@ public class Main extends Application {
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10.0);
         grid.setVgap(10.0);
-        grid.setMinSize(800, 550);
+        grid.setMinSize(800, 600);
         /*
          * Col 1
          */
@@ -212,44 +212,34 @@ public class Main extends Application {
 
         grid.add(memoryFieldsBox, 1, 0, 1, 3);
 
-        // Memory Size Box
-        HBox horizContainer = new HBox();
-        horizContainer.getStyleClass().add("horiz-container");
-        VBox memorySizeVbox = new VBox();
-        memorySizeVbox.getStyleClass().add("memory-size-box");
-        memorySizeBox = memorySizeVbox;
-
-        // Memory Box
-        VBox memoryBox = new VBox();
-        memoryBox.getStyleClass().add("memory-box");
-        // Memory Container
-        VBox memoryContainer = new VBox();
-        memoryContainer.setPrefSize(100, 600);
-        memoryContainer.getStyleClass().add("memory-container");
-        //TODO TESTS - GET RID OF
-        ProcessBlock p1 = new ProcessBlock("P1", 500, 0);
-        memoryContainer.getChildren().add(p1);
-        //p1.change("P2", 100, 200);
-        ProcessBlock p3 = new ProcessBlock("P3", 1000, 100);
-        //TODO END TESTS
-        memoryContainer.getChildren().add(p3);
-
-        memoryContainerPub = memoryContainer;
-
-        horizContainer.getChildren().addAll(memorySizeVbox, memoryBox);
-
-        grid.add(horizContainer, 3, 0, 1, 3);
-        grid.add(memoryContainer, 4, 0, 1, 3);
+        /* Memory Manager Col */
+        Pane sizeLayout = new Pane();
+        Pane blockLayout = new Pane();
+        sizeLayout.getStyleClass().add("size-layout");
+        blockLayout.getStyleClass().add("block-layout");
+        sizeLayoutPane = sizeLayout;
+        blockLayoutPane = blockLayout;
+        /* TODO tests - get rid of */
+        ProcessBlock p1 = new ProcessBlock("P1", 1000, 0);
+        ProcessBlock p2 = new ProcessBlock("P2", 275, p1.getEndY());
+        ProcessBlock p3 = new ProcessBlock("P3", 800, p2.getEndY());
+        ProcessBlock p4 = new ProcessBlock("P4", 500, p3.getEndY());
+        /* TODO end tests */
+        grid.add(sizeLayout, 2, 0, 1, 3);
+        grid.add(blockLayout, 3, 0, 1, 3);
         /*
          * End Memory Column
          */
         return grid;
     }
-
-    public static VBox memoryContainerPub;
-
-    public static VBox memorySizeBox;
-
+    private static Pane sizeLayoutPane;
+    private static Pane blockLayoutPane;
+    public static Pane getSizeLayoutPane() {
+        return sizeLayoutPane;
+    }
+    public static Pane getBlockLayoutPane() {
+        return blockLayoutPane;
+    }
     public static void main(String[] args) {
         launch(args);
     }

@@ -20,6 +20,7 @@
 #algoSelect .context-menu {
     -fx-pref-width: 150px;
 }
+.memory-box {}
 .memory-fields {
     -fx-pref-width: 150px;
 }
@@ -58,21 +59,21 @@
     -fx-font-weight: bold;
 }
 
-.memory-box {}
-.memory-container {
-    -fx-background-color: #ffc300;
+/* Memory Manager Col */
+.size-layout {}
+.block-layout {
+    -fx-background-color: #ffc100;
+    -fx-pref-width: 100px;
 }
-.process-block {
+.size-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+.process-label {
     -fx-background-color: magenta;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
     -fx-border-color: black;
     -fx-border-width: 3px;
     -fx-border-style: hidden hidden solid hidden;
-}
-.process-size-label {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-}
-.process-block-label {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
 }
