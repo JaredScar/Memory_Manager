@@ -110,6 +110,7 @@ public class API {
      *
      * @return null if there are no empty spaces
      */
+    @Deprecated
     public int[] getEmptySpace() {
         int emptyStartY = -1;
         if(processBlocks.size() == 0) return new int[] {0, getTotalMemSize()};
@@ -168,8 +169,9 @@ public class API {
                 }
             }
             if(isEmpty) {
-                if(endY1 >= 0) {
+                if(endY1 > 0) {
                     emptySpaces.put(endY1, 0);
+                    System.out.println("endY1: " + endY1); // TODO debug - get rid of
                 }
             }
         }
@@ -195,6 +197,7 @@ public class API {
         for(Integer startY : emptySpaces.keySet()) {
             emptySpacesArr[cout][0] = startY; // startY
             emptySpacesArr[cout][1] = emptySpaces.get(new Integer(startY)); // Size
+            cout++;
         }
         if(emptySpaces.size() > 0) {
             return emptySpacesArr;

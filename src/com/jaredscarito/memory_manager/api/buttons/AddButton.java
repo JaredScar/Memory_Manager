@@ -20,9 +20,9 @@ public class AddButton implements EventHandler<MouseEvent> {
             int pDimensions[][] = API.getInstance().getEmptySpaces();
             Arrays.sort(pDimensions, new Comparator<int[]>() {
                 public int compare(int[] s1, int[] s2) {
-                    if (s1[0] < s2[0])
+                    if (s1[0] > s2[0])
                         return 1;
-                    else if (s1[0] > s2[0])
+                    else if (s1[0] < s2[0])
                         return -1;
                     else {
 
@@ -31,7 +31,7 @@ public class AddButton implements EventHandler<MouseEvent> {
                 }
             });
             for (int p = 0; p < pDimensions.length; p++) {
-                System.out.println("StartY =" + pDimensions[p][0]);
+                System.out.println("Hole " + p + ": " + "StartY:" + pDimensions[p][0] + " | Size:" + pDimensions[p][1]);
             }
             //get process size
             int pSize = API.getInstance().getInputMemSize();
