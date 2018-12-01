@@ -5,6 +5,10 @@ import javafx.scene.input.MouseEvent;
 import com.jaredscarito.memory_manager.api.API;
 import javax.swing.*;
 
+/**
+ * @author Raymond McNamara
+ */
+
 public class RemoveButton implements EventHandler<MouseEvent> {
 
     @Override
@@ -13,7 +17,7 @@ public class RemoveButton implements EventHandler<MouseEvent> {
 
         if(API.getInstance().removeBlock(Pid) == false)
         {
-            JOptionPane.showMessageDialog(null, "ERROR: Process does not exist memory");
+            JOptionPane.showMessageDialog(null, "ERROR: Process does not exist in memory!");
         }
 
 

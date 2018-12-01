@@ -6,6 +6,10 @@ import com.jaredscarito.memory_manager.main.Main;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Jared Scarito
+ */
+
 public class API {
     private static API api = new API();
     public static API getInstance() {

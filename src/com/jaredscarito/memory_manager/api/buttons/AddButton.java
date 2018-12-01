@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * @author Raymond McNamara
+ */
+
 public class AddButton implements EventHandler<MouseEvent> {
 
     @Override
@@ -20,8 +24,6 @@ public class AddButton implements EventHandler<MouseEvent> {
         else if(API.getInstance().getSelectedAlgorithm().equalsIgnoreCase("worst fit")){
             worstFit();
         }
-
-
     }
     public static void firstFit() {
         String Pid;

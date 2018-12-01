@@ -1,15 +1,11 @@
 package com.jaredscarito.memory_manager.main;
 
-import com.jaredscarito.memory_manager.api.API;
 import com.jaredscarito.memory_manager.api.buttons.AddButton;
 import com.jaredscarito.memory_manager.api.buttons.CompactButton;
 import com.jaredscarito.memory_manager.api.buttons.RemoveButton;
-import com.jaredscarito.memory_manager.api.spaces.ProcessBlock;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,9 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+/**
+ * @author Jared Scarito
+ */
 
 public class Main extends Application {
     private static TextField totalMem;

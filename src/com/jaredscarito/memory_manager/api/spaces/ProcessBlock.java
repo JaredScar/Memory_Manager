@@ -7,6 +7,10 @@ import javafx.scene.layout.HBox;
 
 import javax.swing.*;
 
+/**
+ * @author Jared Scarito
+ */
+
 public class ProcessBlock extends HBox {
 
     private double size;
