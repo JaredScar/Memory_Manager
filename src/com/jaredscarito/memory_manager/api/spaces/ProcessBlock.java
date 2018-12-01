@@ -21,7 +21,7 @@ public class ProcessBlock extends HBox {
     private Label processLabel;
 
     public ProcessBlock(String pid, double size, double startY) {
-        double sizeCalc = ( (600 / Double.parseDouble(Main.getTotalMemField().getText())) * size );
+        double sizeCalc = ( (580 / Double.parseDouble(Main.getTotalMemField().getText())) * size );
         if(sizeCalc >= 40) {
             this.size = sizeCalc;
             this.pid = pid;
@@ -48,10 +48,10 @@ public class ProcessBlock extends HBox {
             Main.getSizeLayoutPane().getChildren().add(sizeLabel);
             Main.getBlockLayoutPane().getChildren().add(processLabel);
         } else {
-            double minSize = ( (600 / Double.parseDouble(Main.getTotalMemField().getText())) * size );
+            double minSize = ( (580 / Double.parseDouble(Main.getTotalMemField().getText())) * size );
             double adder = 1;
             while (minSize < 40) {
-                minSize = ( (600 / Double.parseDouble(Main.getTotalMemField().getText())) * (size + adder));
+                minSize = ( (580 / Double.parseDouble(Main.getTotalMemField().getText())) * (size + adder));
                 adder++;
             }
             JOptionPane.showMessageDialog(null, "Cannot perform operation - Minimum Size required: " + (size + adder) + " KB");

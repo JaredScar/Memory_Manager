@@ -131,10 +131,10 @@ public class API {
         }
         if(emptyStartY == -1) return null;
         // We need to find size of it now
-        double emptyEndY = 600;
+        double emptyEndY = 580;
         double startYCout = emptyStartY;
         if(startYCout > -1) {
-            while (startYCout < 600) {
+            while (startYCout < 580) {
                 startYCout += 1;
                 for(ProcessBlock block : processBlocks) {
                     if(block.getStartY() == startYCout) {
@@ -144,7 +144,7 @@ public class API {
                 }
             }
         }
-        double size = (double) (( ((double) emptyEndY - (double) emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
+        double size = (double) (( ((double) emptyEndY - (double) emptyStartY) / (double) 580 ) * Double.parseDouble(Main.getTotalMemField().getText()));
         return new double[] {emptyStartY, size};
     }
 
@@ -176,14 +176,14 @@ public class API {
         }
         for(Double emptyStartY : emptySpaces.keySet()) {
             double yCout = emptyStartY;
-            while(yCout < 600) {
+            while(yCout < 580) {
                 yCout += 1;
                 boolean foundEnd = false;
                 for(ProcessBlock block : processBlocks) {
                     //System.out.println("Comparing " + Math.ceil(block.getStartY()) + " to " + Math.ceil(yCout)); // TODO - debug - get rid of
                     if(Math.ceil(block.getStartY()) == Math.ceil(yCout)) {
                         // Hole ends here
-                        double size = ( ( block.getStartY() -  emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText());
+                        double size = ( ( block.getStartY() -  emptyStartY) / (double) 580 ) * Double.parseDouble(Main.getTotalMemField().getText());
                         /* Debugs * /
                         System.out.println("EmptySpaces - block.getStartY(): " + block.getStartY() + " | emptyStartY: "
                                 + emptyStartY +  " | TotalMemField: " + Double.parseDouble(Main.getTotalMemField().getText()));
@@ -195,12 +195,12 @@ public class API {
                     }
                 }
                 if(foundEnd) break;
-                if(yCout >= 600) {
+                if(yCout >= 580) {
                     /* Debugs * /
                     System.out.println("EmptySpaces - yCout: " + yCout + " | emptyStartY: "
                             + emptyStartY +  " | TotalMemField: " + Double.parseDouble(Main.getTotalMemField().getText()));
                     /**/
-                    double size = (( (yCout - emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
+                    double size = (( (yCout - emptyStartY) / (double) 580 ) * Double.parseDouble(Main.getTotalMemField().getText()));
                     emptySpaces.put(emptyStartY, size);
                 }
             }

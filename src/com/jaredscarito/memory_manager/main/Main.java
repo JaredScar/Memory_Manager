@@ -260,8 +260,9 @@ public class Main extends Application {
         grid.add(sizeLayout, 2, 0, 1, 3);
         grid.add(blockLayout, 3, 0, 1, 3);
         // Set grid height
-        grid.setMaxHeight(600);
-        grid.setPrefHeight(600);
+        grid.setMaxHeight(580);
+        grid.setPrefHeight(580);
+        grid.setMinHeight(580);
         //System.out.println("Size of Mem Container: " + sizeOfMemContainer);
         /*
          * End Memory Column
