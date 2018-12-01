@@ -59,7 +59,7 @@ public class AddButton implements EventHandler<MouseEvent> {
             }
             if (added == false)//failure to add block
             {
-                JOptionPane.showMessageDialog(null, "Process not added. Memory block not large enough");
+                JOptionPane.showMessageDialog(null, "ERROR: Process not added. No memory block large enough...");
             }
         } else {
             JOptionPane.showMessageDialog(null, "ERROR: Process already exists!");
@@ -101,7 +101,7 @@ public class AddButton implements EventHandler<MouseEvent> {
             }
             if (added == false)//failure to add block
             {
-                JOptionPane.showMessageDialog(null, "Process not added. Memory block not large enough");
+                JOptionPane.showMessageDialog(null, "ERROR: Process not added. No memory block large enough...");
             }
         } else {
             JOptionPane.showMessageDialog(null, "ERROR: Process already exists!");
@@ -143,7 +143,7 @@ public class AddButton implements EventHandler<MouseEvent> {
             }
             if (added == false)//failure to add block
             {
-                JOptionPane.showMessageDialog(null, "Process not added. Memory block not large enough");
+                JOptionPane.showMessageDialog(null, "ERROR: Process not added. No memory block large enough...");
             }
         } else {
             JOptionPane.showMessageDialog(null, "ERROR: Process already exists!");
