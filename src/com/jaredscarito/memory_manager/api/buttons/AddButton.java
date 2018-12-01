@@ -17,9 +17,9 @@ public class AddButton implements EventHandler<MouseEvent> {
         Pid = API.getInstance().getSelectedPid();
         if(!API.getInstance().hasProcessById(Pid)) {
             //get empty spaces and sizes
-            int pDimensions[][] = API.getInstance().getEmptySpaces();
-            Arrays.sort(pDimensions, new Comparator<int[]>() {
-                public int compare(int[] s1, int[] s2) {
+            double pDimensions[][] = API.getInstance().getEmptySpaces();
+            Arrays.sort(pDimensions, new Comparator<double[]>() {
+                public int compare(double[] s1, double[] s2) {
                     if (s1[0] > s2[0])
                         return 1;
                     else if (s1[0] < s2[0])
@@ -30,6 +30,9 @@ public class AddButton implements EventHandler<MouseEvent> {
                     }
                 }
             });
+            for (int p = 0; p < pDimensions.length; p++) {
+                System.out.println("Hole " + p + ": " + "StartY:" + pDimensions[p][0] + " | Size:" + pDimensions[p][1]);
+            }
             //get process size
             int pSize = API.getInstance().getInputMemSize();
             //add block
@@ -57,15 +60,15 @@ public class AddButton implements EventHandler<MouseEvent> {
         // get process id number
         Pid = API.getInstance().getSelectedPid();
         //get empty spaces and sizes
-        int pDimensions[][] = API.getInstance().getEmptySpaces();
+        double pDimensions[][] = API.getInstance().getEmptySpaces();
         Arrays.toString(pDimensions);
         //get process size
         int pSize = API.getInstance().getInputMemSize();
         //add block
         boolean added = false;
         //find first hole
-        int startY = pDimensions[0][0];
-        int size = pDimensions[0][1];
+        double startY = pDimensions[0][0];
+        double size = pDimensions[0][1];
         for(int p = 0;p<pDimensions.length;p++)
         {//find the first hole in memory
             if(pDimensions[p][0]< startY && pDimensions[p][1]>pSize)

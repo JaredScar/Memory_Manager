@@ -43,7 +43,7 @@ public class API {
      * Adds a ProcessBlock instance to the processBlocks ArrayList with the specified params
      * pid, size, and startY
      */
-    public boolean addBlock(String pid, int size, int startY) {
+    public boolean addBlock(String pid, double size, double startY) {
         ProcessBlock p = new ProcessBlock(pid, size, startY);
         if(p.getSize() != 0) {
             processBlocks.add(p);
@@ -111,15 +111,15 @@ public class API {
      * @return null if there are no empty spaces
      */
     @Deprecated
-    public int[] getEmptySpace() {
-        int emptyStartY = -1;
-        if(processBlocks.size() == 0) return new int[] {0, getTotalMemSize()};
+    public double[] getEmptySpace() {
+        double emptyStartY = -1;
+        if(processBlocks.size() == 0) return new double[] {0, getTotalMemSize()};
 
         for(ProcessBlock block1 : processBlocks) {
             boolean isEmpty = true;
             for(ProcessBlock block2 : processBlocks) {
-                int endY1 = block1.getEndY();
-                int startY2 = block2.getStartY();
+                double endY1 = block1.getEndY();
+                double startY2 = block2.getStartY();
                 emptyStartY = endY1;
                 if(endY1 == startY2) {
                     isEmpty = false;
@@ -131,8 +131,8 @@ public class API {
         }
         if(emptyStartY == -1) return null;
         // We need to find size of it now
-        int emptyEndY = 600;
-        int startYCout = emptyStartY;
+        double emptyEndY = 600;
+        double startYCout = emptyStartY;
         if(startYCout > -1) {
             while (startYCout < 600) {
                 startYCout += 1;
@@ -144,8 +144,8 @@ public class API {
                 }
             }
         }
-        int size = (int) (( ((double) emptyEndY - (double) emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
-        return new int[] {emptyStartY, size};
+        double size = (double) (( ((double) emptyEndY - (double) emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
+        return new double[] {emptyStartY, size};
     }
 
     /**
@@ -154,48 +154,62 @@ public class API {
      *
      * @return null if there are no empty spaces
      */
-    public int[][] getEmptySpaces() {
-        HashMap<Integer, Integer> emptySpaces = new HashMap<>(); // startY, size
-        if(processBlocks.size() < 1) return new int[][] {{0, getTotalMemSize()}};
+    public double[][] getEmptySpaces() {
+        HashMap<Double, Double> emptySpaces = new HashMap<>(); // startY, size
+        if(processBlocks.size() < 1) return new double[][] {{0.0, getTotalMemSize()}};
 
         for(ProcessBlock block1 : processBlocks) {
             boolean isEmpty = true;
-            int endY1 = -1;
+            double endY1 = -1;
             for(ProcessBlock block2 : processBlocks) {
                 endY1 = block1.getEndY();
-                int startY2 = block2.getStartY();
+                double startY2 = block2.getStartY();
                 if(endY1 == startY2) {
                     isEmpty = false;
                 }
             }
             if(isEmpty) {
                 if(endY1 > 0) {
-                    emptySpaces.put(endY1, 0);
+                    emptySpaces.put(endY1, 0.0);
                 }
             }
         }
-        for(Integer emptyStartY : emptySpaces.keySet()) {
-            int yCout = emptyStartY;
+        for(Double emptyStartY : emptySpaces.keySet()) {
+            double yCout = emptyStartY;
             while(yCout < 600) {
                 yCout += 1;
+                boolean foundEnd = false;
                 for(ProcessBlock block : processBlocks) {
-                    if(block.getStartY() == yCout) {
+                    //System.out.println("Comparing " + Math.ceil(block.getStartY()) + " to " + Math.ceil(yCout)); // TODO - debug - get rid of
+                    if(Math.ceil(block.getStartY()) == Math.ceil(yCout)) {
                         // Hole ends here
-                        int size = (int) (( ((double) yCout - (double) emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
+                        double size = ( ( block.getStartY() -  emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText());
+                        /* Debugs * /
+                        System.out.println("EmptySpaces - block.getStartY(): " + block.getStartY() + " | emptyStartY: "
+                                + emptyStartY +  " | TotalMemField: " + Double.parseDouble(Main.getTotalMemField().getText()));
+                        System.out.println("emptyStartY: " + emptyStartY + "Size: " + size); // TODO - debug - get rid of
+                        /**/
                         emptySpaces.put(emptyStartY, size);
+                        foundEnd = true;
+                        break;
                     }
                 }
-                if(yCout == 600) {
-                    int size = (int) (( ((double) yCout - (double) emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
+                if(foundEnd) break;
+                if(yCout >= 600) {
+                    /* Debugs * /
+                    System.out.println("EmptySpaces - yCout: " + yCout + " | emptyStartY: "
+                            + emptyStartY +  " | TotalMemField: " + Double.parseDouble(Main.getTotalMemField().getText()));
+                    /**/
+                    double size = (( (yCout - emptyStartY) / (double) 600 ) * Double.parseDouble(Main.getTotalMemField().getText()));
                     emptySpaces.put(emptyStartY, size);
                 }
             }
         }
-        int[][] emptySpacesArr = new int[emptySpaces.size()][2];
+        double[][] emptySpacesArr = new double[emptySpaces.size()][2];
         int cout = 0;
-        for(Integer startY : emptySpaces.keySet()) {
+        for(Double startY : emptySpaces.keySet()) {
             emptySpacesArr[cout][0] = startY; // startY
-            emptySpacesArr[cout][1] = emptySpaces.get(new Integer(startY)); // Size
+            emptySpacesArr[cout][1] = (double) emptySpaces.values().toArray()[cout]; // Size
             cout++;
         }
         if(emptySpaces.size() > 0) {

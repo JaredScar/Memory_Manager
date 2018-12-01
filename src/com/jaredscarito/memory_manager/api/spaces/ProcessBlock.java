@@ -9,9 +9,9 @@ import javax.swing.*;
 
 public class ProcessBlock extends HBox {
 
-    private int size;
-    private int startY;
-    private int endY;
+    private double size;
+    private double startY;
+    private double endY;
 
     private String pid;
 
@@ -20,12 +20,12 @@ public class ProcessBlock extends HBox {
     private Label sizeLabel;
     private Label processLabel;
 
-    public ProcessBlock(String pid, int size, int startY) {
+    public ProcessBlock(String pid, double size, double startY) {
         double sizeCalc = ( (600 / Double.parseDouble(Main.getTotalMemField().getText())) * size );
         if(sizeCalc >= 40) {
-            this.size = (int) sizeCalc;
+            this.size = sizeCalc;
             this.pid = pid;
-            this.displaySize = size;
+            this.displaySize = (int) size;
             this.startY = startY;
             this.endY = this.size + this.startY; // Extra digit is for border px
             setLayoutY(this.startY);
@@ -40,7 +40,7 @@ public class ProcessBlock extends HBox {
             this.processLabel.setPrefHeight(this.size);
             processLabel.setLayoutY(startY);
 
-            Label sizeLabel = new Label(size + " KB");
+            Label sizeLabel = new Label(this.displaySize + " KB");
             sizeLabel.getStyleClass().add("size-label");
             this.sizeLabel = sizeLabel;
             this.sizeLabel.setLayoutY(this.endY - 15);
@@ -71,13 +71,13 @@ public class ProcessBlock extends HBox {
     public int getDisplaySize() {
         return displaySize;
     }
-    public int getSize() {
+    public double getSize() {
         return this.size;
     }
-    public int getStartY() {
+    public double getStartY() {
         return startY;
     }
-    public int getEndY() {
+    public double getEndY() {
         return endY;
     }
 }

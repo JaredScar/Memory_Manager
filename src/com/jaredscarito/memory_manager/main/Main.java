@@ -51,6 +51,11 @@ public class Main extends Application {
         return processSize;
     }
 
+    private static int sizeOfMemContainer;
+    public static int getSizeOfMemContainer() {
+        return sizeOfMemContainer;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
@@ -254,6 +259,10 @@ public class Main extends Application {
         /* TODO end tests */
         grid.add(sizeLayout, 2, 0, 1, 3);
         grid.add(blockLayout, 3, 0, 1, 3);
+        // Set grid height
+        grid.setMaxHeight(600);
+        grid.setPrefHeight(600);
+        //System.out.println("Size of Mem Container: " + sizeOfMemContainer);
         /*
          * End Memory Column
          */
