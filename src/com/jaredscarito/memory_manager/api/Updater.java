@@ -2,11 +2,13 @@ package com.jaredscarito.memory_manager.api;
 
 import com.jaredscarito.memory_manager.api.spaces.ProcessBlock;
 import com.jaredscarito.memory_manager.main.Main;
+import java.util.Timer;
 import javafx.application.Platform;
 
 import java.util.TimerTask;
 
 public class Updater extends TimerTask {
+    private boolean wasSet = false;
     @Override
     public void run() {
         Platform.runLater( () -> {
@@ -20,6 +22,10 @@ public class Updater extends TimerTask {
                             API.getInstance().removeBlock("OS");
                             API.getInstance().addBlock("OS", osSize, 0);
                         }
+                    } else {
+                        double minSizeReq = getMinSizeRequired(osSize);
+                        API.getInstance().removeBlock("OS");
+                        API.getInstance().addBlock("OS", minSizeReq, 0);
                     }
                 }
 
@@ -40,6 +46,16 @@ public class Updater extends TimerTask {
                 Main.memPercentUsedLabel.setText("Memory Used: " + memPercentUsed + "%");
             }
         });
+    }
+    public double getMinSizeRequired(double size) {
+        double minSize = ( (580 / Double.parseDouble(Main.getTotalMemField().getText())) * size );
+        double adder = 1;
+        while (minSize < 40) {
+            minSize = ( (580 / Double.parseDouble(Main.getTotalMemField().getText())) * (size + adder));
+            adder++;
+        }
+        double displayMinSize = (( (minSize) / (double) 580 ) * Double.parseDouble(Main.getTotalMemField().getText()));
+        return Math.ceil(displayMinSize);
     }
     public boolean isInt(String s) {
         try {

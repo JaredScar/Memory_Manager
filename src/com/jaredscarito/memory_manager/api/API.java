@@ -4,6 +4,8 @@ import com.jaredscarito.memory_manager.api.spaces.ProcessBlock;
 import com.jaredscarito.memory_manager.main.Main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -244,7 +246,44 @@ public class API {
     /**
      * Moves all the memory in the graphical display up
      */
-    public void compactMemory() {}
+    public void compactMemory() {
+        while(this.getEmptySpaces().length > 1) {
+            ArrayList<ProcessBlock> blocks = (ArrayList<ProcessBlock>)this.processBlocks.clone();
+            blocks.sort(new Comparator<ProcessBlock>() {
+                @Override
+                public int compare(ProcessBlock t, ProcessBlock t1) {
+                    if(t.getStartY() < t1.getStartY()) return 1;
+                    return 0;
+                }
+            });
+            double[][] whiteSpaces = this.getEmptySpaces();
+            int cout = 0;
+            while(cout < whiteSpaces.length) {
+                double emptyStartY = whiteSpaces[cout][0]; // startY
+                double emptySize = whiteSpaces[cout][1]; // DisplaySize
+                Arrays.sort(whiteSpaces, new Comparator<double[]>() {
+                    @Override
+                    public int compare(double[] t, double[] t1) {
+                        if(t[0] < t1[0]) return 1;
+                        return -1;
+                    }
+                });
+                if(this.getEmptySpaces().length == 1) break;
+                for(ProcessBlock block : blocks) {
+                    String blockID = block.getPID();
+                    double blockStartY = new Double(block.getStartY());
+                    double blockDisplaySize = new Double(block.getDisplaySize());
+                    if(blockStartY > emptyStartY) {
+                        this.removeBlock(block);
+                        this.addBlock(blockID, blockDisplaySize, emptyStartY);
+                        break;
+                    }
+                }
+                cout++;
+                whiteSpaces = this.getEmptySpaces();
+            }
+        }
+    }
 
     /**
      *
