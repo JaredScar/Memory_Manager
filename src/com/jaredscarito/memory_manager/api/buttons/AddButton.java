@@ -1,6 +1,7 @@
 package com.jaredscarito.memory_manager.api.buttons;
 
 import com.jaredscarito.memory_manager.api.API;
+import com.jaredscarito.memory_manager.main.Main;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javax.swing.*;
@@ -23,6 +24,11 @@ public class AddButton implements EventHandler<MouseEvent> {
         }
         else if(API.getInstance().getSelectedAlgorithm().equalsIgnoreCase("worst fit")){
             worstFit();
+        }
+        // Make TotalMemory and OSMemory uneditable now
+        if(API.getInstance().getProcessBlocks().size() > 1) {
+            Main.getTotalMemField().setEditable(false);
+            Main.getOsMemField().setEditable(false);
         }
     }
     public static void firstFit() {

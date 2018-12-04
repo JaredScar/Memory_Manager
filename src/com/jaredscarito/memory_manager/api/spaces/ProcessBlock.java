@@ -1,9 +1,14 @@
 package com.jaredscarito.memory_manager.api.spaces;
 
 import com.jaredscarito.memory_manager.main.Main;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 import javax.swing.*;
 
@@ -42,6 +47,7 @@ public class ProcessBlock extends HBox {
             this.processLabel.setPrefWidth(100);
             processLabel.setAlignment(Pos.CENTER);
             this.processLabel.setPrefHeight(this.size);
+            if(pid.equalsIgnoreCase("OS")) this.processLabel.setStyle("-fx-background-color: CORNFLOWERBLUE;");
             processLabel.setLayoutY(startY);
 
             Label sizeLabel = new Label(this.displaySize + " KB");
@@ -75,13 +81,25 @@ public class ProcessBlock extends HBox {
     public int getDisplaySize() {
         return displaySize;
     }
+    public void setDisplaySize(int displaySize) {
+        this.displaySize = displaySize;
+    }
     public double getSize() {
         return this.size;
+    }
+    public void setSize(double size) {
+        this.size = size;
     }
     public double getStartY() {
         return startY;
     }
+    public void setStartY(double startY) {
+        this.startY = startY;
+    }
     public double getEndY() {
         return endY;
+    }
+    public void setEndY(double endY) {
+        this.endY = endY;
     }
 }

@@ -56,6 +56,11 @@ public class API {
         return false;
     }
 
+    /**
+     *
+     * @param pid
+     * @return
+     */
     public boolean hasProcessById(String pid) {
         for(ProcessBlock block : processBlocks) {
             if(block.getPID().equalsIgnoreCase(pid)) {
@@ -63,6 +68,20 @@ public class API {
             }
         }
         return false;
+    }
+
+    /**
+     *
+     * @param pid
+     * @return
+     */
+    public ProcessBlock getProcessBlockById(String pid) {
+        for(ProcessBlock block : processBlocks) {
+            if(block.getPID().equalsIgnoreCase(pid)) {
+                return block;
+            }
+        }
+        return null;
     }
 
     /**
@@ -204,7 +223,7 @@ public class API {
                     System.out.println("EmptySpaces - yCout: " + yCout + " | emptyStartY: "
                             + emptyStartY +  " | TotalMemField: " + Double.parseDouble(Main.getTotalMemField().getText()));
                     /**/
-                    double size = (( (yCout - emptyStartY) / (double) 580 ) * Double.parseDouble(Main.getTotalMemField().getText()));
+                    double size = (( (Math.floor(yCout) - emptyStartY) / (double) 580 ) * Double.parseDouble(Main.getTotalMemField().getText()));
                     emptySpaces.put(emptyStartY, size);
                 }
             }

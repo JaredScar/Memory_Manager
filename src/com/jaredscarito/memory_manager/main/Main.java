@@ -1,13 +1,13 @@
 package com.jaredscarito.memory_manager.main;
 
+import com.jaredscarito.memory_manager.api.API;
+import com.jaredscarito.memory_manager.api.Updater;
 import com.jaredscarito.memory_manager.api.buttons.AddButton;
 import com.jaredscarito.memory_manager.api.buttons.CompactButton;
 import com.jaredscarito.memory_manager.api.buttons.RemoveButton;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.util.Timer;
 
 /**
  * @author Jared Scarito
@@ -54,12 +56,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Memory Manager");
         primaryStage.setScene(new Scene(getGrid()));
         primaryStage.getScene().getStylesheets().add("com/jaredscarito/memory_manager/main/style.css");
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        // Add OS field
+        API.getInstance().addBlock("OS", API.getInstance().getOSFieldSize(), 0);
+        // Start Updater TimerTask
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new Updater(), 1000, 1000);
     }
 
     public GridPane getGrid() {
