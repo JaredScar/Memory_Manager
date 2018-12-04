@@ -80,3 +80,27 @@
     -fx-border-width: 3px;
     -fx-border-style: hidden hidden solid hidden;
 }
+
+/* Col 5 */
+.result-container {}
+.result-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bolder;
+}
+.result-label {
+    -fx-font-size: 16px;
+    -fx-label-padding: 0 0 60px 0;
+}
+
+/* Created by */
+.footer-container {
+    -fx-padding: 45px 0 0 0;
+}
+.footer-header {
+    -fx-font-size: 20px;
+    -fx-font-weight: bolder;
+}
+.footer-author {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}

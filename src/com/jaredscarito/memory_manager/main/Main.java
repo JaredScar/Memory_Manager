@@ -6,7 +6,9 @@ import com.jaredscarito.memory_manager.api.buttons.AddButton;
 import com.jaredscarito.memory_manager.api.buttons.CompactButton;
 import com.jaredscarito.memory_manager.api.buttons.RemoveButton;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.Timer;
 
@@ -55,12 +58,19 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         //Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Memory Manager");
         primaryStage.setScene(new Scene(getGrid()));
         primaryStage.getScene().getStylesheets().add("com/jaredscarito/memory_manager/main/style.css");
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
         primaryStage.show();
 
         // Add OS field
@@ -78,7 +88,7 @@ public class Main extends Application {
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10.0);
         grid.setVgap(10.0);
-        grid.setMinSize(800, 600);
+        grid.setMinSize(830, 600);
         /*
          * Col 1
          */
@@ -271,10 +281,61 @@ public class Main extends Application {
         /*
          * End Memory Column
          */
+
+        /*
+         * Start Col 5
+         */
+        /* ROW RESULTS */
+        VBox container = new VBox();
+        container.getStyleClass().add("result-container");
+        container.setAlignment(Pos.TOP_CENTER);
+        Label resultHeader = new Label("RESULTS");
+        resultHeader.getStyleClass().add("result-header");
+        Label memPercentUsedLab = new Label("Memory Used: ");
+        memPercentUsedLab.getStyleClass().add("result-label");
+        Label memPercentLeftLab = new Label("Memory Left: ");
+        memPercentLeftLab.getStyleClass().add("result-label");
+        Label memValUsedLab = new Label("Memory Used: ");
+        memValUsedLab.getStyleClass().add("result-label");
+        Label memValLeftLab = new Label("Memory Left: ");
+        memValLeftLab.getStyleClass().add("result-label");
+
+        memPercentUsedLabel = memPercentUsedLab;
+        memPercentLeftLabel = memPercentLeftLab;
+        memValUsedLabel = memValUsedLab;
+        memValLeftLabel = memValLeftLab;
+
+        container.getChildren().addAll(resultHeader, memPercentUsedLabel, memPercentLeftLabel, memValUsedLabel, memValLeftLabel);
+
+        grid.add(container, 4, 0, 1, 2);
+        /* END ROW RESULTS */
+
+        /* ROW CREDITS */
+        VBox footerContain = new VBox();
+        footerContain.getStyleClass().add("footer-container");
+        Label footerHeader = new Label("CREATED BY");
+        footerHeader.getStyleClass().add("footer-header");
+        Label jared = new Label("Jared Scarito");
+        jared.getStyleClass().add("footer-author");
+        Label ray = new Label("Ray McNamara");
+        ray.getStyleClass().add("footer-author");
+
+        footerContain.setAlignment(Pos.TOP_CENTER);
+        footerContain.getChildren().addAll(footerHeader, jared, ray);
+
+        grid.add(footerContain, 4, 2);
+        /* END ROW CREDITS */
+        /*
+         * End Col 5
+         */
         return grid;
     }
-    private static Pane sizeLayoutPane;
-    private static Pane blockLayoutPane;
+    public static Label memPercentUsedLabel;
+    public static Label memPercentLeftLabel;
+    public static Label memValUsedLabel;
+    public static Label memValLeftLabel;
+    public static Pane sizeLayoutPane;
+    public static Pane blockLayoutPane;
     public static Pane getSizeLayoutPane() {
         return sizeLayoutPane;
     }
