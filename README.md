@@ -6,6 +6,7 @@ Memory_Manager was a program designed to show how the memory is stored for jobs 
 - There is a max of 9 processes.
 - There is a limit to the minimum size of a process based on how much total memory entered(A message will pop up if the entered number is too small).
 - Each process can only be in memory once at a time.
+- There is a minimum size required for each process based on total memory size. When you try and add a process too small a message will pop up providing you with the calculated minimum size. The OS must fit this size requirement too.
 
 # Memory Fit Algorithms Included:
 ## First Fit 
