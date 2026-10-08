@@ -1,6 +1,6 @@
 # Memory Manager
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/TheWolfBadger/Memory_Manager/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/github/license/JaredScar/Memory_Manager)](LICENSE)
 ![Java 21](https://img.shields.io/badge/Java-21-4478C5)
 ![JavaFX 21](https://img.shields.io/badge/JavaFX-21-FF6B2B)
 
