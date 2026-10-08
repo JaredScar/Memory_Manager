@@ -1,0 +1,16 @@
+# Build output
+out/
+target/
+*.class
+
+# IntelliJ personal files
+.idea/workspace.xml
+.idea/shelf/
+.idea/artifacts/
+
+# Local binaries
+*.exe
+
+# OS junk
+.DS_Store
+Thumbs.db
